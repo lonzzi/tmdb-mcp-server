@@ -18,6 +18,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "homepage": "https://github.com/lonzzi/tmdb-mcp-server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lonzzi/tmdb-mcp-server.git"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.25.1",
     "axios": "^1.13.2",
