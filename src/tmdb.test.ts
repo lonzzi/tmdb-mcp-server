@@ -11,21 +11,14 @@ describe("searchMovies", () => {
     jest.clearAllMocks();
   });
 
-  it("should return movie results when movies are found", async () => {
+  it("should return movie results and call API with correct parameters", async () => {
     const mockMovies = [
       {
-        id: 603,
-        title: "The Matrix",
-        overview: "Set in the 22nd century...",
-        release_date: "1999-03-30",
-        vote_average: 8.2,
-      },
-      {
-        id: 604,
-        title: "The Matrix Reloaded",
-        overview: "Six months after the events...",
-        release_date: "2003-05-15",
-        vote_average: 7.0,
+        id: 1,
+        title: "Test Movie",
+        overview: "Test Overview",
+        release_date: "2023-01-01",
+        vote_average: 8.0,
       },
     ];
     const mockResponse = {
@@ -35,7 +28,8 @@ describe("searchMovies", () => {
     };
     mockedAxios.get.mockResolvedValue(mockResponse);
 
-    const result = await searchMovies(apiKey, "The Matrix");
+    const query = "Test Query";
+    const result = await searchMovies(apiKey, query);
 
     expect(result).toEqual(mockMovies);
     expect(mockedAxios.get).toHaveBeenCalledWith(
@@ -43,34 +37,12 @@ describe("searchMovies", () => {
       {
         params: {
           api_key: apiKey,
-          query: "The Matrix",
+          query: query,
           language: "en-US",
           page: 1,
         },
       }
     );
-  });
-
-  it("should return Inception when searching for it", async () => {
-    const mockMovies = [
-      {
-        id: 27205,
-        title: "Inception",
-        overview: "Cobb, a skilled thief...",
-        release_date: "2010-07-15",
-        vote_average: 8.4,
-      },
-    ];
-    const mockResponse = {
-      data: {
-        results: mockMovies,
-      },
-    };
-    mockedAxios.get.mockResolvedValue(mockResponse);
-
-    const result = await searchMovies(apiKey, "Inception");
-
-    expect(result).toEqual(mockMovies);
   });
 
   it("should return an empty array when result list is empty", async () => {
@@ -113,14 +85,14 @@ describe("searchTvShows", () => {
     jest.clearAllMocks();
   });
 
-  it("should return One Punch Man when searching for it", async () => {
+  it("should return TV show results and call API with correct parameters", async () => {
     const mockShows = [
       {
-        id: 63926,
-        name: "One Punch Man",
-        overview: "The story of Saitama...",
-        first_air_date: "2015-10-05",
-        vote_average: 8.4,
+        id: 101,
+        name: "Test Show",
+        overview: "Test Overview",
+        first_air_date: "2023-01-01",
+        vote_average: 7.5,
       },
     ];
     const mockResponse = {
@@ -130,60 +102,21 @@ describe("searchTvShows", () => {
     };
     mockedAxios.get.mockResolvedValue(mockResponse);
 
-    const result = await searchTvShows(apiKey, "One Punch Man");
+    const query = "Test Show Query";
+    const result = await searchTvShows(apiKey, query);
 
     expect(result).toEqual(mockShows);
-  });
-
-  it("should return Breaking Bad when searching for it", async () => {
-    const mockShows = [
+    expect(mockedAxios.get).toHaveBeenCalledWith(
+      "https://api.themoviedb.org/3/search/tv",
       {
-        id: 1396,
-        name: "Breaking Bad",
-        overview: "A high school chemistry teacher...",
-        first_air_date: "2008-01-20",
-        vote_average: 8.9,
-      },
-    ];
-    const mockResponse = {
-      data: {
-        results: mockShows,
-      },
-    };
-    mockedAxios.get.mockResolvedValue(mockResponse);
-
-    const result = await searchTvShows(apiKey, "Breaking Bad");
-
-    expect(result).toEqual(mockShows);
-  });
-
-  it("should return multiple results for 'Game of Thrones'", async () => {
-    const mockShows = [
-      {
-        id: 1399,
-        name: "Game of Thrones",
-        overview: "Seven noble families...",
-        first_air_date: "2011-04-17",
-        vote_average: 8.4,
-      },
-      {
-        id: 94605,
-        name: "House of the Dragon",
-        overview: "The story of the House Targaryen...",
-        first_air_date: "2022-08-21",
-        vote_average: 8.4,
-      },
-    ];
-    const mockResponse = {
-      data: {
-        results: mockShows,
-      },
-    };
-    mockedAxios.get.mockResolvedValue(mockResponse);
-
-    const result = await searchTvShows(apiKey, "Game of Thrones");
-
-    expect(result).toEqual(mockShows);
+        params: {
+          api_key: apiKey,
+          query: query,
+          language: "en-US",
+          page: 1,
+        },
+      }
+    );
   });
 
   it("should return an empty array when result list is empty", async () => {

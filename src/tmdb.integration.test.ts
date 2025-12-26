@@ -34,6 +34,26 @@ describeIfApiKey("TMDB Integration Tests (Real API Requests)", () => {
     expect(breakingBad?.id).toBe(1396); // TMDB ID for Breaking Bad
   });
 
+  it("should find 'The Matrix' with real TMDB API", async () => {
+    console.log("Making real request to TMDB for 'The Matrix'...");
+    const results = await searchMovies(apiKey!, "The Matrix");
+
+    expect(results.length).toBeGreaterThan(0);
+    const matrix = results.find(m => m.title === "The Matrix");
+    expect(matrix).toBeDefined();
+    expect(matrix?.id).toBe(603); // TMDB ID for The Matrix
+  });
+
+  it("should find 'One Punch Man' with real TMDB API", async () => {
+    console.log("Making real request to TMDB for 'One Punch Man'...");
+    const results = await searchTvShows(apiKey!, "One Punch Man");
+
+    expect(results.length).toBeGreaterThan(0);
+    const opm = results.find(show => show.name === "One-Punch Man");
+    expect(opm).toBeDefined();
+    expect(opm?.id).toBe(63926); // TMDB ID for One Punch Man
+  });
+
   it("should return empty array for gibberish query", async () => {
     const results = await searchMovies(apiKey!, "asdfjkl;qweruiop1234");
     expect(results).toEqual([]);
