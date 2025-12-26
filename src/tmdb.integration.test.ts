@@ -14,8 +14,8 @@ describeIfApiKey("TMDB Integration Tests", () => {
   // Increase timeout for real network requests
   jest.setTimeout(30000);
 
-  it("should find 'Inception' with real TMDB API", async () => {
-    console.log("Making real request to TMDB for 'Inception'...");
+  it("should find 'Inception'", async () => {
+    console.log("Querying TMDB for 'Inception'...");
     const results = await searchMovies(apiKey!, "Inception");
     
     expect(results.length).toBeGreaterThan(0);
@@ -24,8 +24,8 @@ describeIfApiKey("TMDB Integration Tests", () => {
     expect(inception?.id).toBe(27205); // TMDB ID for Inception
   });
 
-  it("should find 'Breaking Bad' with real TMDB API", async () => {
-    console.log("Making real request to TMDB for 'Breaking Bad'...");
+  it("should find 'Breaking Bad'", async () => {
+    console.log("Querying TMDB for 'Breaking Bad'...");
     const results = await searchTvShows(apiKey!, "Breaking Bad");
     
     expect(results.length).toBeGreaterThan(0);
@@ -34,8 +34,8 @@ describeIfApiKey("TMDB Integration Tests", () => {
     expect(breakingBad?.id).toBe(1396); // TMDB ID for Breaking Bad
   });
 
-  it("should find 'The Matrix' with real TMDB API", async () => {
-    console.log("Making real request to TMDB for 'The Matrix'...");
+  it("should find 'The Matrix'", async () => {
+    console.log("Querying TMDB for 'The Matrix'...");
     const results = await searchMovies(apiKey!, "The Matrix");
 
     expect(results.length).toBeGreaterThan(0);
@@ -44,8 +44,8 @@ describeIfApiKey("TMDB Integration Tests", () => {
     expect(matrix?.id).toBe(603); // TMDB ID for The Matrix
   });
 
-  it("should find 'One Punch Man' with real TMDB API", async () => {
-    console.log("Making real request to TMDB for 'One Punch Man'...");
+  it("should find 'One Punch Man'", async () => {
+    console.log("Querying TMDB for 'One Punch Man'...");
     const results = await searchTvShows(apiKey!, "One Punch Man");
 
     expect(results.length).toBeGreaterThan(0);
