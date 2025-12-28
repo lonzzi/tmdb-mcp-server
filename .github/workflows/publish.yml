@@ -3,7 +3,7 @@ name: Publish to npm
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 permissions:
   id-token: write
@@ -19,25 +19,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
-        run: npm ci 
+        run: npm ci
 
       - name: Verify Tests
         run: npm test
-
-      - name: Set version from tag
-        run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
-          echo "Setting package version to $VERSION"
-          npm version $VERSION --no-git-tag-version
 
       - name: Build
         run: npm run build
 
       - name: Publish to npm
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public
