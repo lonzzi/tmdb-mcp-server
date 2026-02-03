@@ -1,6 +1,6 @@
 {
   "name": "@lonzzi/tmdb-mcp-server",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "MCP server for searching movies on TMDB",
   "main": "build/index.js",
   "bin": {
@@ -15,7 +15,14 @@
   "files": [
     "build"
   ],
-  "keywords": ["tmdb", "mcp", "modelcontextprotocol", "movie", "tv show", "search"],
+  "keywords": [
+    "tmdb",
+    "mcp",
+    "modelcontextprotocol",
+    "movie",
+    "tv show",
+    "search"
+  ],
   "author": "",
   "license": "MIT",
   "homepage": "https://github.com/lonzzi/tmdb-mcp-server",
