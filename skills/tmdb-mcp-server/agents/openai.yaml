@@ -1,0 +1,4 @@
+interface:
+  display_name: "TMDB MCP"
+  short_description: "Search movies, TV shows, and people"
+  default_prompt: "Use $tmdb-mcp-server to find movies, TV shows, people, and details via TMDB."
